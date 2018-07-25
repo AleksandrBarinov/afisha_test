@@ -103,9 +103,7 @@ public class ResultPage {
 
         }
     }
-
-
-
+    
 
 }
 
