@@ -109,7 +109,8 @@ public class MainPage {
         WebElement currentSubway = subways.get(suggestionNumber);
         currentSubway.click();
 
-        subwaysSelected.add(menuItem);
+        subwaysSelected.add(subways.get(suggestionNumber).getAttribute("data-id"));
+        //subwaysSelected.add(menuItem);
 
     }
 

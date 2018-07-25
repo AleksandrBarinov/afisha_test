@@ -55,12 +55,13 @@ public class ResultPage {
 
             for (String s : subwaysText) {
 
-                String element = subwayList.findElement(By.xpath("child::span[text()='"+s+"']")).getText();
+                //String element = subwayList.findElement(By.xpath("child::span[text()='"+s+"']")).getText();
+                String element = subwayList.findElement(By.xpath("parent::div[@data-id='"+s+"']")).getAttribute("data-id");
                 subwaysActual.add(element);
 
             }
 
-            System.out.println(subwaysActual);
+            System.out.println("subways data-id's: " + subwaysActual);
 
         assertEquals(subwaysSelected, subwaysActual);
     }
