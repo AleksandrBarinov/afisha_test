@@ -100,12 +100,13 @@ public class MainPage {
 
     }
 
-    public void selectSubway(String menuItem) throws InterruptedException {
+    public void selectSubway(String menuItem,int suggestionNumber) throws InterruptedException {
         subwayList.sendKeys(menuItem);
         Thread.sleep(1000);
         runListener.runListener();
         List<WebElement> subways = runListener.getEventDriver().findElements(By.xpath("//*[@data-title='"+menuItem+"']"));
-        WebElement currentSubway = subways.get(0);
+        suggestionNumber = suggestionNumber - 1;
+        WebElement currentSubway = subways.get(suggestionNumber);
         currentSubway.click();
 
         subwaysSelected.add(menuItem);

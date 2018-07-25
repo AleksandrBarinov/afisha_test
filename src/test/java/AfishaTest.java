@@ -19,7 +19,7 @@ public class AfishaTest extends BaseSteps {
         mainPage.selectWhen("Завтра");
         mainPage.selectThreeDCheckbox("2D");
         mainPage.selectSubwayList();
-        mainPage.selectSubway("Курская");
+        mainPage.selectSubway("Курская",2);
         mainPage.selectGenreList();
         mainPage.selectGenre("драма");
         mainPage.selectGenre("комедия");
