@@ -22,7 +22,7 @@ public class BaseSteps {
         System.setProperty("webdriver.chrome.driver", properties.getProperty("webdriver.chrome.driver"));
         driver = new ChromeDriver();
         baseUrl = properties.getProperty("app.url");
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
         driver.manage().window().fullscreen();
         driver.get(baseUrl);
     }

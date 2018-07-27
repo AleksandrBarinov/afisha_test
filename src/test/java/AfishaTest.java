@@ -7,7 +7,7 @@ import util.RunListener;
 public class AfishaTest extends BaseSteps {
 
     @Test
-    public void Test() throws InterruptedException {
+    public void Test(){
 
         RunListener runListener = new RunListener();
         runListener.runListener();
@@ -17,12 +17,12 @@ public class AfishaTest extends BaseSteps {
         mainPage.selectGoToCinema();
         mainPage.selectWhenList();
         mainPage.selectWhen("Завтра");
-        mainPage.selectThreeDCheckbox("2D");
         mainPage.selectSubwayList();
         mainPage.selectSubway("Курская",2);
         mainPage.selectGenreList();
         mainPage.selectGenre("драма");
         mainPage.selectGenre("комедия");
+        mainPage.selectThreeDCheckbox("2D");
 
         mainPage.selectChoose();
 

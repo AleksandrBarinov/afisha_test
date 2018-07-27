@@ -2,15 +2,21 @@ package pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static steps.BaseSteps.driver;
 
 public class ResultPage {
 
@@ -37,6 +43,15 @@ public class ResultPage {
 
     }
 
+    Wait<WebDriver> wait = new WebDriverWait(driver, 5, 1000);
+
+    public void makeElementVisibleByJavascript(final WebElement element) {
+        String script = "var element = arguments[0];"
+                + "element.style.display='block';"
+                ;
+        ((JavascriptExecutor)driver).executeScript(script, element);
+    }
+
     public void checkTitle(){
         assertEquals("Киноафиша Москвы",title.getText());
     }
@@ -51,13 +66,15 @@ public class ResultPage {
 
         ArrayList<String> subwaysText = (ArrayList<String>)subwaysSelected.clone();
 
+            System.out.println(subwaysText);
+
         List<String> subwaysActual = new ArrayList<String>();
 
             for (String s : subwaysText) {
 
-                //String element = subwayList.findElement(By.xpath("child::span[text()='"+s+"']")).getText();
-                String element = subwayList.findElement(By.xpath("parent::div[@data-id='"+s+"']")).getAttribute("data-id");
-                subwaysActual.add(element);
+                WebElement element = subwayList.findElement(By.xpath("parent::div[@data-id='"+s+"']"));
+                makeElementVisibleByJavascript(element);
+                subwaysActual.add(element.getAttribute("data-id"));
 
             }
 
@@ -66,7 +83,7 @@ public class ResultPage {
         assertEquals(subwaysSelected, subwaysActual);
     }
 
-    public void genresCheck(ArrayList genresSelected) throws InterruptedException {
+    public void genresCheck(ArrayList genresSelected){
 
         ArrayList<String> genresText = (ArrayList<String>)genresSelected.clone();
 
@@ -74,9 +91,10 @@ public class ResultPage {
 
             for (String s : genresText){
 
-                Thread.sleep(500);
-                String element = genreList.findElement(By.xpath("//parent::span/child::span[text()='"+s+"']")).getText();
-                genresActual.add(element);
+                WebElement element = genreList.findElement(By.xpath("//parent::span/child::span[text()='"+s+"']"));
+                makeElementVisibleByJavascript(element);
+
+                genresActual.add(element.getText());
 
             }
 
@@ -103,7 +121,7 @@ public class ResultPage {
 
         }
     }
-    
+
 
 }
 
